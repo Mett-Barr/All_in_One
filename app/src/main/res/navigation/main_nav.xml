@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/blankFragment3">
+
+    <fragment
+        android:id="@+id/blankFragment3"
+        android:name="com.example.allinone.test.BlankFragment3"
+        android:label="fragment_blank3"
+        tools:layout="@layout/fragment_blank3" />
+    <fragment
+        android:id="@+id/blankFragment4"
+        android:name="com.example.allinone.test.BlankFragment4"
+        android:label="fragment_blank4"
+        tools:layout="@layout/fragment_blank4" />
+    <action
+        android:id="@+id/action_global_blankFragment4"
+        app:destination="@id/blankFragment4" />
+</navigation>
