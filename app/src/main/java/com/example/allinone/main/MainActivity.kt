@@ -1,15 +1,17 @@
-package com.example.allinone
+package com.example.allinone.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
+import com.example.allinone.R
 import com.example.allinone.databinding.ActivityMainBinding
-import com.example.allinone.main.MainPagerAdapter
-import com.example.allinone.main.MainViewModel
+import kotlin.math.abs
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,17 +23,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        binding.viewModel= viewModel
-        binding.lifecycleOwner= this
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
 
         init()
 
     }
 
     private fun init() {
-        binding.VP.adapter = MainPagerAdapter(this)
+        binding.VP.adapter = MainPagerAdapter.newInstance(this, binding.VP)
         binding.VP.offscreenPageLimit = 3
         binding.VP.setPageTransformer(DepthPageTransformer())
+        binding.VP.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                when (position) {
+                    0 -> binding.VP.isUserInputEnabled = false
+                    1 -> binding.VP.isUserInputEnabled = true
+                }
+            }
+        })
+
     }
 
     @RequiresApi(21)
@@ -46,9 +58,10 @@ class MainActivity : AppCompatActivity() {
                 view.translationX = pageWidth * -position
                 view.translationZ = -1f
                 val scaleFactor = (MIN_SCALE
-                        + (1 - MIN_SCALE) * (1 - Math.abs(position)))
+                        + (1 - MIN_SCALE) * (1 - abs(position)))
                 view.scaleX = scaleFactor
                 view.scaleY = scaleFactor
+                view.scrollBarFadeDuration
 
 //                // Use the default slide transition when moving to the left page
 //                view.setAlpha(1f);
@@ -88,4 +101,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        when(binding.VP.currentItem) {
+            1 -> binding.VP.currentItem = 0
+        }
+    }
 }

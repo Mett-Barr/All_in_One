@@ -18,4 +18,7 @@
     <action
         android:id="@+id/action_global_blankFragment4"
         app:destination="@id/blankFragment4" />
+    <action
+        android:id="@+id/action_global_blankFragment3"
+        app:destination="@id/blankFragment3" />
 </navigation>

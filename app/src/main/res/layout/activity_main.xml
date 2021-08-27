@@ -12,11 +12,13 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:background="#ABC4CC"
+        tools:context=".main.MainActivity">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/VP"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </FrameLayout>
 </layout>
