@@ -21,17 +21,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-
         init()
-
     }
 
     private fun init() {
-        binding.VP.adapter = MainPagerAdapter.newInstance(this, binding.VP)
+        binding.VP.adapter = MainPagerAdapter.newInstance(this)
         binding.VP.offscreenPageLimit = 3
         binding.VP.setPageTransformer(DepthPageTransformer())
         binding.VP.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -44,6 +42,12 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        viewModel.pagerState.observe(this, Observer {
+            when(it) {
+                0 -> binding.VP.currentItem = 0
+                1 -> binding.VP.currentItem = 1
+            }
+        })
     }
 
     @RequiresApi(21)
@@ -101,9 +105,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
     override fun onBackPressed() {
         when(binding.VP.currentItem) {
-            1 -> binding.VP.currentItem = 0
+            0 -> this.finish()
+            1 -> viewModel.goToPage1()
         }
     }
 }

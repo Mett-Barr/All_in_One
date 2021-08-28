@@ -3,12 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/USER/AndroidStudioProjects/AllinOne/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.159375" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/AllinOne/app/src/main/res/layout/activity_main.xml" value="0.26974358974358975" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/AllinOne/app/src/main/res/layout/fragment_blank.xml" value="0.26974358974358975" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/AllinOne/app/src/main/res/layout/fragment_blank2.xml" value="0.26974358974358975" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/AllinOne/app/src/main/res/layout/fragment_blank3.xml" value="0.26974358974358975" />
         <entry key="..\:/Users/USER/AndroidStudioProjects/AllinOne/app/src/main/res/layout/fragment_blank4.xml" value="0.26974358974358975" />
-        <entry key="..\:/Users/USER/AndroidStudioProjects/AllinOne/app/src/main/res/layout/fragment_main.xml" value="0.26974358974358975" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/AllinOne/app/src/main/res/layout/fragment_components.xml" value="0.1" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/AllinOne/app/src/main/res/layout/fragment_main.xml" value="0.1" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/AllinOne/app/src/main/res/layout/fragment_notification.xml" value="0.262037037037037" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/AllinOne/app/src/main/res/layout/fragment_page2.xml" value="0.262037037037037" />
+        <entry key="..\:/Users/USER/AndroidStudioProjects/AllinOne/app/src/main/res/xml/arrays.xml" value="0.262037037037037" />
       </map>
     </option>
   </component>
