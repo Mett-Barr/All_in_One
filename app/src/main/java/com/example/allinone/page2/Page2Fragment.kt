@@ -40,10 +40,9 @@ class Page2Fragment : Fragment() {
                 2 -> binding.fragmentContainerView2.findNavController()
                     .navigate(R.id.action_global_notificationFragment)
             }
+        })
 
-            // onCreateView後會觀察到變化而跳轉到第二頁
-            // 目前還需要找解決辦法(onCreateView後第一次不監聽
-            viewModel.goToPage2()
+        viewModel.goToState.observe(viewLifecycleOwner, Observer {
         })
     }
 

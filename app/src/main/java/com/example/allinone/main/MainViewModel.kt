@@ -12,14 +12,17 @@ class MainViewModel : ViewModel() {
 
     fun goToB3() {
         _goToState.value = 0
+        goToPage2()
     }
 
     fun goToB4() {
         _goToState.value = 1
+        goToPage2()
     }
 
     fun goToNotification() {
         _goToState.value = 2
+        goToPage2()
     }
 
 
