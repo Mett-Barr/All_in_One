@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.example.allinone.R
 import com.example.allinone.databinding.FragmentMainBinding
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,10 +41,12 @@ class MainFragment : Fragment() {
     private fun init() {
         toast()
         component()
-        date()
+        datePicker()
+        timePicker()
         test()
         clickable()
     }
+
 
     private fun clickable() {
         viewModel.pagerClickable.observe(viewLifecycleOwner, Observer {
@@ -51,7 +54,7 @@ class MainFragment : Fragment() {
         })
     }
 
-    private fun date() {
+    private fun datePicker() {
         binding.cv3.text = df.format(c.time)
         val datePicker =
             MaterialDatePicker.Builder.datePicker()
@@ -66,6 +69,25 @@ class MainFragment : Fragment() {
         datePicker.addOnPositiveButtonClickListener {
             c.timeInMillis = it
             binding.cv3.text = df.format(c.time)
+        }
+    }
+
+    private fun timePicker() {
+        binding.cv4.text = tf.format(c.time)
+
+        val timePicker =
+            MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+//                    .setTitleText("Select Appointment time")
+                .setHour(hf.format(c.time).toInt())
+                .setMinute(mf.format(c.time).toInt())
+                .build()
+        binding.timePickerCV4.setOnClickListener {
+            timePicker.showNow(this.parentFragmentManager, "")
+        }
+
+        timePicker.addOnPositiveButtonClickListener {
+            binding.cv4.text = timePicker.hour.toString() + ":" + timePicker.minute.toString()
         }
     }
 
