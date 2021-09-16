@@ -22,6 +22,7 @@ class ServiceFragment : Fragment() {
     /** ----------------------Binder--------------------------------  */
     private lateinit var binderService: BinderService
     private var binderBound: Boolean = false
+    lateinit var binderToast: Toast
 
     /** Defines callbacks for service binding, passed to bindService()  */
     private val binderConnection = object : ServiceConnection {
@@ -102,9 +103,11 @@ class ServiceFragment : Fragment() {
                 // However, if this call were something that might hang, then this request should
                 // occur in a separate thread to avoid slowing down the activity performance.
                 val num: Int = binderService.randomNumber
-                Toast.makeText(activity, "number: $num", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(activity, "false", Toast.LENGTH_SHORT).show()
+                if (this::binderToast.isInitialized) {
+                    binderToast.cancel()
+                }
+                binderToast = Toast.makeText(activity, "number: $num", Toast.LENGTH_SHORT)
+                binderToast.show()
             }
         }
     }
