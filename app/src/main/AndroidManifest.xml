@@ -21,6 +21,7 @@
         </activity>
 
         <service android:name=".page2.service.Service"/>
+        <service android:name=".page2.service.BinderService"/>
     </application>
 
 </manifest>
