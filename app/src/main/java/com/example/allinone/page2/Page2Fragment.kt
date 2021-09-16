@@ -39,6 +39,8 @@ class Page2Fragment : Fragment() {
                     .navigate(R.id.action_global_blankFragment4)
                 2 -> binding.fragmentContainerView2.findNavController()
                     .navigate(R.id.action_global_notificationFragment)
+                3 -> binding.fragmentContainerView2.findNavController()
+                    .navigate(R.id.action_global_serviceFragment)
             }
         })
 

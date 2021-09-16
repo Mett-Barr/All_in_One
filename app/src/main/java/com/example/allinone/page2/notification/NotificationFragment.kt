@@ -47,7 +47,7 @@ class NotificationFragment : Fragment() {
 
     private fun send() {
 
-        val channelId = getString(R.string.channel_id)
+        val channelId = getString(R.string.noti_channel_id)
 
         // 確認是否為Android 8.0以上版本
         // 8.0以上版本才需要建立通知渠道
@@ -72,7 +72,7 @@ class NotificationFragment : Fragment() {
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setStyle(
                 NotificationCompat.BigTextStyle()
-                    .bigText("Big Text")
+                    .bigText("Big\nText")
             )
 
         binding.button7.setOnClickListener {

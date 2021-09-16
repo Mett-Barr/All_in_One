@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
 
+    /**--------------Navigation------------------*/
     private val _goToState = MutableLiveData(0)
     val goToState: LiveData<Int>
         get() = _goToState
@@ -25,7 +26,13 @@ class MainViewModel : ViewModel() {
         goToPage2()
     }
 
+    fun goToService() {
+        _goToState.value = 3
+        goToPage2()
+    }
+    /**--------------Navigation------------------*/
 
+    /**---------------Pager-----------------------*/
     private val _pagerState = MutableLiveData(0)
     val pagerState: LiveData<Int>
         get() = _pagerState
@@ -49,4 +56,5 @@ class MainViewModel : ViewModel() {
     fun nonClickable() {
         _pagerClickable.value = false
     }
+    /**---------------Pager-----------------------*/
 }
