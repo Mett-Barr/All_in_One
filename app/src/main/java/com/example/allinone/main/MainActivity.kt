@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+        viewModel.context = this
         init()
     }
 
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    /**---------------------------動畫---------------------------*/
     @RequiresApi(21)
     class DepthPageTransformer : ViewPager2.PageTransformer {
         override fun transformPage(view: View, position: Float) {
@@ -104,7 +106,6 @@ class MainActivity : AppCompatActivity() {
             private const val MIN_SCALE = 0.75f
         }
     }
-
 
 
     override fun onBackPressed() {

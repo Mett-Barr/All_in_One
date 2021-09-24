@@ -22,6 +22,10 @@
 
         <service android:name=".page2.service.Service"/>
         <service android:name=".page2.service.BinderService"/>
+        <service
+            android:name=".page2.service.MessengerService"
+            android:process=":remote" />
+
     </application>
 
 </manifest>

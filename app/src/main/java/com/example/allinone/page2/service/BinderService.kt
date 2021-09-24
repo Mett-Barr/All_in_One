@@ -29,7 +29,6 @@ class BinderService : Service() {
     }
 
     override fun onBind(intent: Intent): IBinder {
-        Log.d(TAG, "onBind: ")
         return binder
     }
 }
