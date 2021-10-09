@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        viewModel.context = this
+//        viewModel.context = this
         init()
     }
 

@@ -6,14 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.viewpager2.widget.ViewPager2
-import com.example.allinone.R
 import com.example.allinone.databinding.FragmentBlankBinding
 import com.example.allinone.main.MainViewModel
 
@@ -46,18 +41,18 @@ class BlankFragment : Fragment() {
         var i = 0
         binding.button.setOnClickListener {
             when (viewModel.goToState.value) {
-                0 -> {
-//                    BF2.goToB3()
-//                    goToB3
-                    viewModel.goToB4()
-//                    viewModel.state.value = 0
-                    i = 1
-                }
+//                0 -> {
+////                    BF2.goToB3()
+////                    goToB3
+//                    viewModel.goToB4()
+////                    viewModel.state.value = 0
+//                    i = 1
+//                }
 
                 1 -> {
 //                    BF2.goToB4()
 //                    goToB4
-                    viewModel.goToB3()
+                    viewModel.goToComponents()
 //                    viewModel.state.value = 1
                     i = 0
                 }
@@ -92,8 +87,8 @@ class BlankFragment : Fragment() {
 
         binding.button4.setOnClickListener {
             when(viewModel.goToState.value) {
-                0 -> viewModel.goToB4()
-                1 -> viewModel.goToB3()
+//                0 -> viewModel.goToB4()
+                1 -> viewModel.goToComponents()
             }
         }
     }

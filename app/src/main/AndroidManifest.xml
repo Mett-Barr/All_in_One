@@ -26,6 +26,11 @@
             android:name=".page2.service.MessengerService"
             android:process=":remote" />
 
+        <receiver android:name=".page2.broadcast.MyBroadcastReceiver" android:exported="true">
+            <intent-filter>
+<!--                <action android:name=""-->
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

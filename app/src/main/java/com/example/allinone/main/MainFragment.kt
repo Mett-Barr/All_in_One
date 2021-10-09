@@ -43,15 +43,19 @@ class MainFragment : Fragment() {
         component()
         datePicker()
         timePicker()
-        test()
-        clickable()
+
+
+//        clickable()
+//        test()
     }
 
+    private fun toast() {
+        binding.toastCV1.setOnClickListener {
+            Toast.makeText(activity, "Toast!", Toast.LENGTH_SHORT).show()
+        }
+    }
 
-    private fun clickable() {
-        viewModel.pagerClickable.observe(viewLifecycleOwner, Observer {
-            binding.CL.isClickable = it
-        })
+    private fun component() {
     }
 
     private fun datePicker() {
@@ -91,17 +95,15 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun test() {
-    }
+//    private fun clickable() {
+//        viewModel.pagerClickable.observe(viewLifecycleOwner, Observer {
+//            binding.CL.isClickable = it
+//        })
+//    }
 
-    private fun toast() {
-        binding.toastCV1.setOnClickListener {
-            Toast.makeText(activity, "Toast!", Toast.LENGTH_SHORT).show()
-        }
-    }
+//    private fun test() {
+//    }
 
-    private fun component() {
-    }
 
     companion object {
         @JvmStatic

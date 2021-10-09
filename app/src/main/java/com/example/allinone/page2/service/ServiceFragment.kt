@@ -18,7 +18,7 @@ import com.example.allinone.main.MainViewModel
 
 class ServiceFragment : Fragment() {
     private lateinit var binding: FragmentServiceBinding
-    private val viewModel: MainViewModel by activityViewModels()
+//    private val viewModel: MainViewModel by activityViewModels()
 
     /** ----------------------Binder--------------------------------  */
     private lateinit var binderService: BinderService

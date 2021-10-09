@@ -8,4 +8,5 @@
     <string name="messenger_service_channel_id">ID 4</string>
     <string name="channel_name">channel name</string>
     <string name="channel_description">channel description</string>
+    <string name="send">send</string>
 </resources>
