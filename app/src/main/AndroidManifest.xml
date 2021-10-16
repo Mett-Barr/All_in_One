@@ -11,8 +11,8 @@
         android:theme="@style/Theme.AllInOne">
         <activity
             android:name=".main.MainActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,17 +20,25 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".page2.service.Service"/>
-        <service android:name=".page2.service.BinderService"/>
+        <service android:name=".page2.service.Service" />
+        <service android:name=".page2.service.BinderService" />
         <service
             android:name=".page2.service.MessengerService"
             android:process=":remote" />
 
-        <receiver android:name=".page2.broadcast.MyBroadcastReceiver" android:exported="true">
+        <receiver
+            android:name=".page2.broadcast.MyBroadcastReceiver">
             <intent-filter>
-<!--                <action android:name=""-->
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".page2.broadcast.battery.BatteryBroadcast">
+            <intent-filter>
+                <action android:name="android.intent.action.BATTERY_CHANGED" />
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

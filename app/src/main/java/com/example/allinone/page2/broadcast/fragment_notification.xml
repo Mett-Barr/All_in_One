@@ -83,7 +83,8 @@
                 android:id="@+id/txBigText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="2"
+                android:gravity="top"
+                android:lines="5"
                 android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 

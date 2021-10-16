@@ -27,6 +27,9 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 //        viewModel.context = this
         init()
+
+
+        window.setDecorFitsSystemWindows(false)
     }
 
     private fun init() {

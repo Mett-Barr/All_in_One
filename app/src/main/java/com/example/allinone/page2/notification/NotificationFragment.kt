@@ -2,9 +2,6 @@ package com.example.allinone.page2.notification
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,15 +11,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.viewModels
 import com.example.allinone.R
 import com.example.allinone.databinding.FragmentNotificationBinding
-import android.view.MotionEvent
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat
-
-import androidx.core.content.ContextCompat.getSystemService
 
 
 class NotificationFragment : Fragment() {
