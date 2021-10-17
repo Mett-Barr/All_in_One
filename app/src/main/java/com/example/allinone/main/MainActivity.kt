@@ -3,6 +3,8 @@ package com.example.allinone.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.WindowInsets
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
@@ -40,17 +42,25 @@ class MainActivity : AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 when (position) {
-                    0 -> binding.VP.isUserInputEnabled = false
-                    1 -> binding.VP.isUserInputEnabled = true
+                    0 -> {
+                        binding.VP.isUserInputEnabled = false
+                        window.insetsController?.hide(WindowInsets.Type.ime())
+                        binding.VP.currentItem = 0
+                    }
+                    1 -> {
+                        binding.VP.isUserInputEnabled = true
+                        binding.VP.currentItem = 1
+                    }
                 }
             }
         })
 
         viewModel.pagerState.observe(this, Observer {
-            when(it) {
+            when (it) {
                 0 -> binding.VP.currentItem = 0
                 1 -> binding.VP.currentItem = 1
             }
+//            Toast.makeText(applicationContext, "$it", Toast.LENGTH_SHORT).show()
         })
     }
 
@@ -112,9 +122,21 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onBackPressed() {
-        when(binding.VP.currentItem) {
+        when (binding.VP.currentItem) {
             0 -> this.finish()
             1 -> viewModel.goToPage1()
         }
     }
+
+//    override fun onWindowFocusChanged(hasFocus: Boolean) {
+//        super.onWindowFocusChanged(hasFocus)
+//        Toast.makeText(this, "change", Toast.LENGTH_SHORT).show()
+//        hide()
+//    }
+//
+//    private fun hide() {
+//        if (window.currentFocus?.equals(EditText(this)) == true) {
+//            window.insetsController?.hide(WindowInsets.Type.ime())
+//        }
+//    }
 }

@@ -2,15 +2,20 @@ package com.example.allinone.page2.notification
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.ContentValues.TAG
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import com.example.allinone.R
 import com.example.allinone.databinding.FragmentNotificationBinding
@@ -34,7 +39,9 @@ class NotificationFragment : Fragment() {
 
     private fun init() {
         send()
+        blank()
     }
+
 
     private fun send() {
 
@@ -75,8 +82,10 @@ class NotificationFragment : Fragment() {
                     setContentText(binding.txContent.text)
                 }
                 if (binding.txBigText.text.toString() != "") {
-                    setStyle(NotificationCompat.BigTextStyle()
-                        .bigText(binding.txBigText.text))
+                    setStyle(
+                        NotificationCompat.BigTextStyle()
+                            .bigText(binding.txBigText.text)
+                    )
                 }
             }
 
@@ -88,8 +97,43 @@ class NotificationFragment : Fragment() {
         }
     }
 
+    private fun blank() {
+        binding.notiLayout.setOnClickListener {
+//            Toast.makeText(context, "!!!", Toast.LENGTH_SHORT).show()
+//            it.requestFocus()
+//            it.apply {
+//                windowInsetsController?.hide(android.view.WindowInsets.Type.ime())
+//                isFocusableInTouchMode = true
+//                requestFocus()
+//                isFocusableInTouchMode = false
+//            }
+//            hideKeyboard(it)
+        }
+
+        binding.notiLayout.setOnFocusChangeListener { view, b ->
+//            view.windowInsetsController?.hide(android.view.WindowInsets.Type.ime())
+            hide()
+        }
+    }
+
+    private fun hideKeyboard(it: View) {
+        if (!it.isFocusableInTouchMode) {
+            it.apply {
+                windowInsetsController?.hide(android.view.WindowInsets.Type.ime())
+                isFocusableInTouchMode = true
+                requestFocus()
+                isFocusableInTouchMode = false
+            }
+        }
+    }
+
     companion object {
         @JvmStatic
         fun newInstance() = NotificationFragment()
     }
+
+    private fun hide() {
+        activity?.window?.insetsController?.hide(WindowInsets.Type.ime())
+    }
+
 }
