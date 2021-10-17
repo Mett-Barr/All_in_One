@@ -13,7 +13,7 @@ class BatteryBroadcast : BroadcastReceiver() {
         if (p1 != null) {
             value = p1.extras?.getInt("level")!!
             text = "$value%"
-            Toast.makeText(p0, "$text", Toast.LENGTH_SHORT).show()
+            Toast.makeText(p0, text, Toast.LENGTH_SHORT).show()
         }
     }
 }

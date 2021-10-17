@@ -26,19 +26,6 @@
             android:name=".page2.service.MessengerService"
             android:process=":remote" />
 
-        <receiver
-            android:name=".page2.broadcast.MyBroadcastReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BATTERY_CHANGED" />
-            </intent-filter>
-        </receiver>
-
-        <receiver android:name=".page2.broadcast.battery.BatteryBroadcast">
-            <intent-filter>
-                <action android:name="android.intent.action.BATTERY_CHANGED" />
-            </intent-filter>
-        </receiver>
-
     </application>
 
 </manifest>

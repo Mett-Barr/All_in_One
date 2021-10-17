@@ -15,6 +15,7 @@ class BroadcastFragment : Fragment() {
     private lateinit var binding: FragmentBroadcastBinding
 
     val br = BatteryBroadcast()
+    val br2 = MyBroadcastReceiver()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,24 +29,12 @@ class BroadcastFragment : Fragment() {
     }
 
     private fun init() {
-        orderedBroadcast()
-        broadcast()
-        localBroadcastManager()
         batteryBroadcast()
-    }
-
-    private fun orderedBroadcast() {
-    }
-
-    private fun broadcast() {
-    }
-
-    private fun localBroadcastManager() {
+        testBroadcast()
     }
 
     private fun batteryBroadcast() {
         var boo = false
-        binding.batteryState.text = br.text
         val filter = IntentFilter()
         filter.addAction(Intent.ACTION_BATTERY_CHANGED)
         binding.testButton.setOnClickListener {
@@ -58,11 +47,25 @@ class BroadcastFragment : Fragment() {
                 binding.testButton.text = "unregister"
                 boo = true
             }
+            binding.re.isEnabled = boo
         }
 
         binding.re.setOnClickListener {
             binding.batteryState.text = br.text
             Toast.makeText(context, br.text, Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun testBroadcast() {
+        IntentFilter().also {
+            it.addAction("do it")
+            context?.registerReceiver(br2, it)
+        }
+        binding.re2.setOnClickListener {
+            Intent().also { intent ->
+                intent.action = "do it"
+                context?.sendBroadcast(intent)
+            }
         }
     }
 
@@ -73,6 +76,9 @@ class BroadcastFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        context?.unregisterReceiver(br)
+        context?.apply {
+            unregisterReceiver(br)
+            unregisterReceiver(br2)
+        }
     }
 }

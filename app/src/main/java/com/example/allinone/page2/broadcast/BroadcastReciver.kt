@@ -9,10 +9,10 @@ import android.widget.Toast
 private const val TAG = "MyBroadcastReceiver"
 
 class MyBroadcastReceiver : BroadcastReceiver() {
-    var text = "50%"
-    var value = 50
 
-    override fun onReceive(context: Context, intent: Intent) {
-//        intent.getInt
+    override fun onReceive(p0: Context?, p1: Intent?) {
+        if (p1 != null && p1.action.equals("do it")) {
+            Toast.makeText(p0, "got it!", Toast.LENGTH_SHORT).show()
+        }
     }
 }
