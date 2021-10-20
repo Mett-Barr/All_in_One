@@ -20,7 +20,6 @@ class Page2Fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentPage2Binding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
@@ -39,6 +38,8 @@ class Page2Fragment : Fragment() {
                     .navigate(R.id.action_global_serviceFragment)
                 viewModel.PAGE_BROADCAST -> binding.fragmentContainerView2.findNavController()
                     .navigate(R.id.action_global_boardcastFragment)
+                viewModel.PAGE_VIBRATION -> binding.fragmentContainerView2.findNavController()
+                    .navigate(R.id.action_global_vibrationFragment)
             }
         })
 
@@ -50,5 +51,4 @@ class Page2Fragment : Fragment() {
         @JvmStatic
         fun newInstance() = Page2Fragment()
     }
-
 }

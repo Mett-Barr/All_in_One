@@ -15,6 +15,7 @@ class MainViewModel : ViewModel() {
     val PAGE_NOTIFICATION = 5
     val PAGE_SERVICE = 6
     val PAGE_BROADCAST = 7
+    val PAGE_VIBRATION = 8
 
 //    lateinit var context: Context
 
@@ -40,6 +41,11 @@ class MainViewModel : ViewModel() {
 
     fun goToBroadcast() {
         _goToState.value = PAGE_BROADCAST
+        goToPage2()
+    }
+
+    fun goToVibration() {
+        _goToState.value = PAGE_VIBRATION
         goToPage2()
     }
     /**--------------Navigation------------------*/
