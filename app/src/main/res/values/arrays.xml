@@ -4,4 +4,45 @@
         <item>20.0</item>
         <item>70.0</item>
     </array>
+
+    <string-array name="test_array">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>CHF</item>
+        <item>GBP</item>
+        <item>DKK</item>
+        <item>SEK</item>
+        <item>NOK</item>
+        <item>JPY</item>
+        <item>SAR</item>
+        <item>AUD</item>
+        <item>CAD</item>
+        <item>RUB</item>
+        <item>AZN</item>
+        <item>CNY</item>
+        <item>RON</item>
+        <item>AED</item>
+        <item>BGN</item>
+        <item>KWD</item>
+    </string-array>
+
+
+    <string-array name="haptic_feedback_constants">
+        <item>CLOCK_TICK</item>
+        <item>CONFIRM</item>
+        <item>CONTEXT_CLICK</item>
+        <item>FLAG_IGNORE_GLOBAL_SETTING</item>
+        <item>FLAG_IGNORE_VIEW_SETTING</item>
+        <item>GESTURE_END</item>
+        <item>GESTURE_START</item>
+        <item>KEYBOARD_PRESS</item>
+        <item>KEYBOARD_RELEASE</item>
+        <item>KEYBOARD_TAP</item>
+        <item>LONG_PRESS</item>
+        <item>REJECT</item>
+        <item>TEXT_HANDLE_MOVE</item>
+        <item>VIRTUAL_KEY</item>
+        <item>VIRTUAL_KEY_RELEASE</item>
+
+    </string-array>
 </resources>

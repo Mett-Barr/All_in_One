@@ -4,15 +4,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
+import android.view.WindowInsets.Type.ime
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.core.view.WindowInsetsCompat.Type.ime
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.allinone.R
 import com.example.allinone.databinding.ActivityMainBinding
+import java.lang.reflect.Type
 import kotlin.math.abs
 
 class MainActivity : AppCompatActivity() {
@@ -35,25 +38,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        binding.VP.adapter = MainPagerAdapter.newInstance(this)
-        binding.VP.offscreenPageLimit = 3
-        binding.VP.setPageTransformer(DepthPageTransformer())
-        binding.VP.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                when (position) {
-                    0 -> {
-                        binding.VP.isUserInputEnabled = false
-                        window.insetsController?.hide(WindowInsets.Type.ime())
-                        binding.VP.currentItem = 0
-                    }
-                    1 -> {
-                        binding.VP.isUserInputEnabled = true
-                        binding.VP.currentItem = 1
-                    }
-                }
-            }
-        })
+
+        viewPager()
 
         viewModel.pagerState.observe(this, Observer {
             when (it) {
@@ -62,6 +48,39 @@ class MainActivity : AppCompatActivity() {
             }
 //            Toast.makeText(applicationContext, "$it", Toast.LENGTH_SHORT).show()
         })
+    }
+
+    private fun viewPager() {
+        binding.VP.also {
+            it.adapter = MainPagerAdapter.newInstance(this)
+            it.offscreenPageLimit = 3
+            it.setPageTransformer(DepthPageTransformer())
+            it.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    when (position) {
+                        0 -> {
+                            binding.VP.isUserInputEnabled = false
+                            window.insetsController?.hide(WindowInsets.Type.ime())
+                            binding.VP.currentItem = 0
+                        }
+                        1 -> {
+                            binding.VP.isUserInputEnabled = true
+                            binding.VP.currentItem = 1
+                        }
+                    }
+                }
+
+                override fun onPageScrolled(
+                    position: Int,
+                    positionOffset: Float,
+                    positionOffsetPixels: Int
+                ) {
+                    super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+                    window.insetsController?.hide(android.view.WindowInsets.Type.ime())
+                }
+            })
+        }
     }
 
     /**---------------------------動畫---------------------------*/

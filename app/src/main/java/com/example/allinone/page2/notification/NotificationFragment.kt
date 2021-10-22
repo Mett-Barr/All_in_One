@@ -54,7 +54,7 @@ class NotificationFragment : Fragment() {
             //設定通知渠道名稱、描述和重要性
             val name = getString(R.string.channel_name)
             val descriptionText = getString(R.string.channel_description)
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val importance = NotificationManager.IMPORTANCE_HIGH
             val mChannel = NotificationChannel(channelId, name, importance)
             mChannel.description = descriptionText
             // Register the channel with the system; you can't change the importance
@@ -67,7 +67,7 @@ class NotificationFragment : Fragment() {
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle("Title")
             .setContentText("Content")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setStyle(
                 NotificationCompat.BigTextStyle()
                     .bigText("Big\nText")
