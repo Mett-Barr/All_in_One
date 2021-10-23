@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.setPadding
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.allinone.R
 import com.example.allinone.databinding.FragmentMainBinding
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -39,61 +42,72 @@ class MainFragment : Fragment() {
     }
 
     private fun init() {
-        toast()
-        component()
-        datePicker()
-        timePicker()
+        recyclerView()
+//        toast()
+//        component()
+//        datePicker()
+//        timePicker()
 
 
 //        clickable()
 //        test()
     }
 
-    private fun toast() {
-        binding.toastCV1.setOnClickListener {
-            Toast.makeText(activity, "Toast!", Toast.LENGTH_SHORT).show()
+    private fun recyclerView() {
+        binding.rv.apply {
+            adapter = MainAdapter(
+                resources.getStringArray(R.array.main_item),
+                viewModel,
+                context,
+                this@MainFragment
+            )
+            layoutManager = GridLayoutManager(context, 2)
         }
     }
 
-    private fun component() {
+    fun toast() {
+        Toast.makeText(activity, "Toast!", Toast.LENGTH_SHORT).show()
     }
-
-    private fun datePicker() {
-        binding.cv3.text = df.format(c.time)
-        val datePicker =
-            MaterialDatePicker.Builder.datePicker()
-                .setTitleText("Select dates")
-                .build()
-
-
-        binding.datePickerCV3.setOnClickListener {
-            datePicker.show(this.childFragmentManager, "")
-        }
-
-        datePicker.addOnPositiveButtonClickListener {
-            c.timeInMillis = it
-            binding.cv3.text = df.format(c.time)
-        }
-    }
-
-    private fun timePicker() {
-        binding.cv4.text = tf.format(c.time)
-
-        val timePicker =
-            MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_24H)
-//                    .setTitleText("Select Appointment time")
-                .setHour(hf.format(c.time).toInt())
-                .setMinute(mf.format(c.time).toInt())
-                .build()
-        binding.timePickerCV4.setOnClickListener {
-            timePicker.showNow(this.parentFragmentManager, "")
-        }
-
-        timePicker.addOnPositiveButtonClickListener {
-            binding.cv4.text = timePicker.hour.toString() + ":" + timePicker.minute.toString()
-        }
-    }
+//
+//    private fun component() {
+//    }
+//
+//    private fun datePicker() {
+//        binding.cv3.text = df.format(c.time)
+//        val datePicker =
+//            MaterialDatePicker.Builder.datePicker()
+//                .setTitleText("Select dates")
+//                .build()
+//
+//
+//        binding.datePickerCV3.setOnClickListener {
+//            datePicker.show(this.childFragmentManager, "")
+//        }
+//
+//        datePicker.addOnPositiveButtonClickListener {
+//            c.timeInMillis = it
+//            binding.cv3.text = df.format(c.time)
+//        }
+//    }
+//
+//    private fun timePicker() {
+//        binding.cv4.text = tf.format(c.time)
+//
+//        val timePicker =
+//            MaterialTimePicker.Builder()
+//                .setTimeFormat(TimeFormat.CLOCK_24H)
+////                    .setTitleText("Select Appointment time")
+//                .setHour(hf.format(c.time).toInt())
+//                .setMinute(mf.format(c.time).toInt())
+//                .build()
+//        binding.timePickerCV4.setOnClickListener {
+//            timePicker.showNow(this.parentFragmentManager, "")
+//        }
+//
+//        timePicker.addOnPositiveButtonClickListener {
+//            binding.cv4.text = timePicker.hour.toString() + ":" + timePicker.minute.toString()
+//        }
+//    }
 
 //    private fun clickable() {
 //        viewModel.pagerClickable.observe(viewLifecycleOwner, Observer {

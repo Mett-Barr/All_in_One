@@ -26,7 +26,6 @@
         <item>KWD</item>
     </string-array>
 
-
     <string-array name="haptic_feedback_constants">
         <item>CLOCK_TICK</item>
         <item>CONFIRM</item>
@@ -43,6 +42,16 @@
         <item>TEXT_HANDLE_MOVE</item>
         <item>VIRTUAL_KEY</item>
         <item>VIRTUAL_KEY_RELEASE</item>
+    </string-array>
 
+    <string-array name="main_item">
+        <item>Toast</item>
+        <item>Components</item>
+        <item>2021/10/10</item>
+        <item>19:24</item>
+        <item>Notification</item>
+        <item>Service</item>
+        <item>Broadcast</item>
+        <item>Vibration</item>
     </string-array>
 </resources>
