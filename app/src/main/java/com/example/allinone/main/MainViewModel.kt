@@ -16,6 +16,7 @@ class MainViewModel : ViewModel() {
     val PAGE_SERVICE = 5
     val PAGE_BROADCAST = 6
     val PAGE_VIBRATION = 7
+    val PAGE_CONTNET_PROVIDER = 8
 
 //    lateinit var context: Context
 

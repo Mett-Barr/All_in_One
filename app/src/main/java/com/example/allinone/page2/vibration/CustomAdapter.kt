@@ -15,11 +15,10 @@ class CustomAdapter(private val dataSet: Array<String>) :
      * (custom ViewHolder).
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val button: Button
+        val button: Button = view.findViewById(R.id.vibrator_bt)
 
         init {
             // Define click listener for the ViewHolder's View.
-            button = view.findViewById(R.id.vibrator_bt)
         }
     }
 

@@ -21,7 +21,6 @@ import kotlin.coroutines.coroutineContext
 class MainAdapter(
     private val dataSet: Array<String>,
     private val viewModel: MainViewModel,
-    private val context: Context,
     private val mainFragment: MainFragment
 ) :
     RecyclerView.Adapter<MainAdapter.ViewHolder>() {
@@ -85,6 +84,8 @@ class MainAdapter(
                             this.textView.text = timePicker.hour.toString() + ":" + timePicker.minute.toString()
                         }
                     }
+
+                    // 只需要導航不用其他操作
                     else -> {
                         viewModel.apply {
                             _goToState.value = position

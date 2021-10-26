@@ -53,5 +53,6 @@
         <item>Service</item>
         <item>Broadcast</item>
         <item>Vibration</item>
+        <item>Content Provider</item>
     </string-array>
 </resources>

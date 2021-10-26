@@ -58,7 +58,6 @@ class MainFragment : Fragment() {
             adapter = MainAdapter(
                 resources.getStringArray(R.array.main_item),
                 viewModel,
-                context,
                 this@MainFragment
             )
             layoutManager = GridLayoutManager(context, 2)
