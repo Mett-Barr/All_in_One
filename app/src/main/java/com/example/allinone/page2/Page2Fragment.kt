@@ -30,22 +30,17 @@ class Page2Fragment : Fragment() {
     private fun init() {
         viewModel.goToState.observe(viewLifecycleOwner, Observer {
             when (it) {
-                viewModel.PAGE_COMPONENTS -> navigation(R.id.action_global_componentsFragment)
-                viewModel.PAGE_NOTIFICATION -> navigation(R.id.action_global_notificationFragment)
-                viewModel.PAGE_SERVICE -> navigation(R.id.action_global_serviceFragment)
-                viewModel.PAGE_BROADCAST -> navigation(R.id.action_global_boardcastFragment)
-                viewModel.PAGE_VIBRATION -> navigation(R.id.action_global_vibrationFragment)
-                viewModel.PAGE_CONTNET_PROVIDER -> navigation(R.id.action_global_contentProviderFragment)
+                MainViewModel.PAGE_COMPONENTS -> navigation(R.id.action_global_componentsFragment)
+                MainViewModel.PAGE_NOTIFICATION -> navigation(R.id.action_global_notificationFragment)
+                MainViewModel.PAGE_SERVICE -> navigation(R.id.action_global_serviceFragment)
+                MainViewModel.PAGE_BROADCAST -> navigation(R.id.action_global_boardcastFragment)
+                MainViewModel.PAGE_VIBRATION -> navigation(R.id.action_global_vibrationFragment)
+                MainViewModel.PAGE_CONTENT_PROVIDER -> navigation(R.id.action_global_contentProviderFragment)
             }
         })
-
-        viewModel.goToState.observe(viewLifecycleOwner, Observer {
-        })
     }
 
-    private fun navigation(i: Int) {
-        binding.fragmentContainerView2.findNavController().navigate(i)
-    }
+    private fun navigation(i: Int) = binding.fragmentContainerView2.findNavController().navigate(i)
 
     companion object {
         @JvmStatic

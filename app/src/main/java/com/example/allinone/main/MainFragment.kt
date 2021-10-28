@@ -43,14 +43,6 @@ class MainFragment : Fragment() {
 
     private fun init() {
         recyclerView()
-//        toast()
-//        component()
-//        datePicker()
-//        timePicker()
-
-
-//        clickable()
-//        test()
     }
 
     private fun recyclerView() {

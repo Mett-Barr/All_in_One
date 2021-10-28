@@ -12,6 +12,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="true"
         tools:context=".page2.Page2Fragment">
 
         <androidx.fragment.app.FragmentContainerView
