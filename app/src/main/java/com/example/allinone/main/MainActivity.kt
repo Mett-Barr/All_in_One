@@ -19,7 +19,6 @@ import java.lang.reflect.Type
 import kotlin.math.abs
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
 
@@ -38,16 +37,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-
         viewPager()
-
-        viewModel.pagerState.observe(this, Observer {
-            when (it) {
-                0 -> binding.VP.currentItem = 0
-                1 -> binding.VP.currentItem = 1
-            }
-//            Toast.makeText(applicationContext, "$it", Toast.LENGTH_SHORT).show()
-        })
     }
 
     private fun viewPager() {
@@ -81,6 +71,14 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }
+
+        viewModel.pagerState.observe(this, Observer {
+            when (it) {
+                0 -> binding.VP.currentItem = 0
+                1 -> binding.VP.currentItem = 1
+            }
+//            Toast.makeText(applicationContext, "$it", Toast.LENGTH_SHORT).show()
+        })
     }
 
     /**---------------------------動畫---------------------------*/

@@ -5,30 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-//val PAGE_COMPONENTS = 1
-//val PAGE_NOTIFICATION = 4
-//val PAGE_SERVICE = 5
-//val PAGE_BROADCAST = 6
-//val PAGE_VIBRATION = 7
-//val PAGE_CONTENT_PROVIDER = 8
-
-//const val PAGE_COMPONENTS = 1
-//const val PAGE_NOTIFICATION = 4
-//const val PAGE_SERVICE = 5
-//const val PAGE_BROADCAST = 6
-//const val PAGE_VIBRATION = 7
-//const val PAGE_CONTENT_PROVIDER = 8
-
 class MainViewModel : ViewModel() {
-//    val PAGE_COMPONENTS = 1
-//    val PAGE_NOTIFICATION = 4
-//    val PAGE_SERVICE = 5
-//    val PAGE_BROADCAST = 6
-//    val PAGE_VIBRATION = 7
-//    val PAGE_CONTENT_PROVIDER = 8
-
-//    lateinit var context: Context
-
     /**--------------Navigation------------------*/
     val _goToState = MutableLiveData(0)
     val goToState: LiveData<Int>

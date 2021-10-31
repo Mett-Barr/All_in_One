@@ -3,15 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cv"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
-    app:cardCornerRadius="28dp"
-    android:layout_margin="8dp" >
+    android:layout_height="wrap_content"
+    android:layout_marginStart="24dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="24dp"
+    android:layout_marginBottom="4dp"
+    app:cardCornerRadius="28dp">
 
     <TextView
         android:id="@+id/tx"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
+        android:layout_gravity="start"
+        android:layout_margin="16dp"
+        android:paddingStart="10dp"
         android:textSize="20sp" />
 </com.google.android.material.card.MaterialCardView>

@@ -112,6 +112,7 @@ class NotificationFragment : Fragment() {
 
         binding.notiLayout.setOnFocusChangeListener { view, b ->
 //            view.windowInsetsController?.hide(android.view.WindowInsets.Type.ime())
+            Log.d(TAG, "blank: ")
             hide()
         }
     }

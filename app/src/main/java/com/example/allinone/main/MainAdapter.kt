@@ -27,7 +27,7 @@ class MainAdapter(
 
     private val c = Calendar.getInstance()
     private val df = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
-    private val tf = SimpleDateFormat("hh:mm", Locale.getDefault())
+//    private val tf = SimpleDateFormat("hh:mm", Locale.getDefault())
     private val hf = SimpleDateFormat("hh", Locale.getDefault())
     private val mf = SimpleDateFormat("mm", Locale.getDefault())
 

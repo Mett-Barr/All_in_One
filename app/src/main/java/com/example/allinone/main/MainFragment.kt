@@ -22,11 +22,11 @@ class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private val viewModel: MainViewModel by activityViewModels()
 
-    private val c = Calendar.getInstance()
-    private val df = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
-    private val tf = SimpleDateFormat("hh:mm", Locale.getDefault())
-    private val hf = SimpleDateFormat("hh", Locale.getDefault())
-    private val mf = SimpleDateFormat("mm", Locale.getDefault())
+//    private val c = Calendar.getInstance()
+//    private val df = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
+//    private val tf = SimpleDateFormat("hh:mm", Locale.getDefault())
+//    private val hf = SimpleDateFormat("hh", Locale.getDefault())
+//    private val mf = SimpleDateFormat("mm", Locale.getDefault())
 
 
     override fun onCreateView(
@@ -38,7 +38,13 @@ class MainFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         init()
+
+        binding.let {
+            it.lifecycleOwner
+        }
+
         return binding.root
+
     }
 
     private fun init() {
