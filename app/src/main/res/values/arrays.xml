@@ -54,5 +54,6 @@
         <item>Broadcast</item>
         <item>Vibration</item>
         <item>Content\nProvider</item>
+        <item>Internet</item>
     </string-array>
 </resources>

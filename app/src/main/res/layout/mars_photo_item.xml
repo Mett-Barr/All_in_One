@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="photo"
+            type="com.example.allinone.page2.internet.network.MarsPhoto" />
+
+    </data>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:padding="8dp"
+
+        app:imageUrl="@{photo.imgSrcUrl}"
+        app:shapeAppearanceOverlay="@style/roundCorner"
+        tools:src="@tools:sample/backgrounds/scenic" />
+</layout>

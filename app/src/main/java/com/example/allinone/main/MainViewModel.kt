@@ -72,5 +72,6 @@ class MainViewModel : ViewModel() {
         const val PAGE_BROADCAST = 6
         const val PAGE_VIBRATION = 7
         const val PAGE_CONTENT_PROVIDER = 8
+        const val PAGE_INTERNET = 9
     }
 }

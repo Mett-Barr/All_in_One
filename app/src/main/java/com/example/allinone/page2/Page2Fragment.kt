@@ -29,13 +29,16 @@ class Page2Fragment : Fragment() {
 
     private fun init() {
         viewModel.goToState.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                MainViewModel.PAGE_COMPONENTS -> navigation(R.id.action_global_componentsFragment)
-                MainViewModel.PAGE_NOTIFICATION -> navigation(R.id.action_global_notificationFragment)
-                MainViewModel.PAGE_SERVICE -> navigation(R.id.action_global_serviceFragment)
-                MainViewModel.PAGE_BROADCAST -> navigation(R.id.action_global_boardcastFragment)
-                MainViewModel.PAGE_VIBRATION -> navigation(R.id.action_global_vibrationFragment)
-                MainViewModel.PAGE_CONTENT_PROVIDER -> navigation(R.id.action_global_contentProviderFragment)
+            MainViewModel.apply {
+                when (it) {
+                    PAGE_COMPONENTS -> navigation(R.id.action_global_componentsFragment)
+                    PAGE_NOTIFICATION -> navigation(R.id.action_global_notificationFragment)
+                    PAGE_SERVICE -> navigation(R.id.action_global_serviceFragment)
+                    PAGE_BROADCAST -> navigation(R.id.action_global_boardcastFragment)
+                    PAGE_VIBRATION -> navigation(R.id.action_global_vibrationFragment)
+                    PAGE_CONTENT_PROVIDER -> navigation(R.id.action_global_contentProviderFragment)
+                    PAGE_INTERNET -> navigation(R.id.action_global_internetFragment)
+                }
             }
         })
     }
