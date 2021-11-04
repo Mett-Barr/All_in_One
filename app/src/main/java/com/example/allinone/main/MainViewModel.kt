@@ -11,6 +11,9 @@ class MainViewModel : ViewModel() {
     val goToState: LiveData<Int>
         get() = _goToState
 
+     val _backControl = MutableLiveData(true)
+    val backControl: LiveData<Boolean> = _backControl
+
     fun goToComponents() {
         _goToState.value = PAGE_COMPONENTS
         goToPage2()
@@ -73,5 +76,7 @@ class MainViewModel : ViewModel() {
         const val PAGE_VIBRATION = 7
         const val PAGE_CONTENT_PROVIDER = 8
         const val PAGE_INTERNET = 9
+        const val PAGE_ROOM = 10
+        const val PAGE_SUB_ROOM = 11
     }
 }

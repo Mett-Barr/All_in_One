@@ -55,5 +55,6 @@
         <item>Vibration</item>
         <item>Content\nProvider</item>
         <item>Internet</item>
+        <item>Room</item>
     </string-array>
 </resources>

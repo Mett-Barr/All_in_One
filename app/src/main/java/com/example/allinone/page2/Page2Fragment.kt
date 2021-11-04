@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -38,9 +39,12 @@ class Page2Fragment : Fragment() {
                     PAGE_VIBRATION -> navigation(R.id.action_global_vibrationFragment)
                     PAGE_CONTENT_PROVIDER -> navigation(R.id.action_global_contentProviderFragment)
                     PAGE_INTERNET -> navigation(R.id.action_global_internetFragment)
+                    PAGE_ROOM -> navigation(R.id.action_global_fullScheduleFragment)
                 }
             }
         })
+
+        //
     }
 
     private fun navigation(i: Int) = binding.fragmentContainerView2.findNavController().navigate(i)

@@ -9,4 +9,11 @@
     <string name="channel_name">channel name</string>
     <string name="channel_description">channel description</string>
     <string name="send">send</string>
+
+
+
+    <!-- Shown above left column listing bus stops in full schedule fragment -->
+    <string name="bus_stop_header">Stop Name</string>
+    <!-- Shown above right column listing arrival times in full schedule fragment -->
+    <string name="arrival_time_header">Arrival Time</string>
 </resources>
