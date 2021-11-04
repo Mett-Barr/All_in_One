@@ -38,6 +38,7 @@ class Page2Fragment : Fragment() {
                     PAGE_VIBRATION -> navigation(R.id.action_global_vibrationFragment)
                     PAGE_CONTENT_PROVIDER -> navigation(R.id.action_global_contentProviderFragment)
                     PAGE_INTERNET -> navigation(R.id.action_global_internetFragment)
+                    PAGE_DB -> navigation(R.id.action_global_RoomFragment)
                 }
             }
         })

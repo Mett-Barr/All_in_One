@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/vibrationFragment">
+    app:startDestination="@id/RoomFragment">
 
     <fragment
         android:id="@+id/componentsFragment"
@@ -59,4 +59,24 @@
     <action
         android:id="@+id/action_global_internetFragment"
         app:destination="@id/internetFragment" />
+    <fragment
+        android:id="@+id/RoomFragment"
+        android:name="com.example.allinone.page2.room.RoomFragment"
+        android:label="fragment_d_b"
+        tools:layout="@layout/fragment_room" >
+        <action
+            android:id="@+id/action_DBFragment_to_subRoomFragment"
+            app:destination="@id/subRoomFragment" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_RoomFragment"
+        app:destination="@id/RoomFragment" />
+    <fragment
+        android:id="@+id/subRoomFragment"
+        android:name="com.example.allinone.page2.room.SubRoomFragment"
+        android:label="{stopName}" >
+        <argument
+            android:name="stopName"
+            app:argType="string"/>
+    </fragment>
 </navigation>
