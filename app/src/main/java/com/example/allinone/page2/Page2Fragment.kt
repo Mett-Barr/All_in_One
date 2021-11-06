@@ -112,7 +112,7 @@ class Page2Fragment : Fragment() {
 
     private fun navigation(i: Int) = binding.fragmentContainerView2.findNavController().navigate(i)
 
-    fun getToast() {
+    private fun getToast() {
         if (this::toast.isInitialized) {
             toast.cancel()
         }
@@ -121,7 +121,7 @@ class Page2Fragment : Fragment() {
             viewModel._goToState.value.toString(),
             Toast.LENGTH_SHORT
         )
-        toast.show()
+//        toast.show()
     }
 
     companion object {
