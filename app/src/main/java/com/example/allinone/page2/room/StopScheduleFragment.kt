@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.allinone.databinding.StopScheduleFragmentBinding
 import com.example.allinone.page2.room.viewmodels.BusScheduleViewModel
 import com.example.allinone.page2.room.viewmodels.BusScheduleViewModelFactory
+import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -56,6 +57,21 @@ class StopScheduleFragment: Fragment() {
         arguments?.let {
             stopName = it.getString(STOP_NAME).toString()
         }
+
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true).apply {
+            duration = 300
+        }
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false).apply {
+            duration = 300
+        }
+
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true).apply {
+            duration = 300
+        }
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false).apply {
+            duration = 300
+        }
+
     }
 
     override fun onCreateView(

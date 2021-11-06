@@ -1,9 +1,9 @@
 package com.example.allinone.main
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.allinone.R
 
 class MainViewModel : ViewModel() {
     /**--------------Navigation------------------*/
@@ -11,8 +11,12 @@ class MainViewModel : ViewModel() {
     val goToState: LiveData<Int>
         get() = _goToState
 
-     val _backControl = MutableLiveData(true)
+    val _backControl = MutableLiveData(true)
     val backControl: LiveData<Boolean> = _backControl
+
+    fun backPress() {
+        _backControl.value = !_backControl.value!!
+    }
 
     fun goToComponents() {
         _goToState.value = PAGE_COMPONENTS
@@ -64,8 +68,8 @@ class MainViewModel : ViewModel() {
     fun nonClickable() {
         _pagerClickable.value = false
     }
-    /**---------------Pager-----------------------*/
 
+    /**---------------Pager-----------------------*/
 
 
     companion object {
@@ -76,7 +80,45 @@ class MainViewModel : ViewModel() {
         const val PAGE_VIBRATION = 7
         const val PAGE_CONTENT_PROVIDER = 8
         const val PAGE_INTERNET = 9
-        const val PAGE_ROOM = 10
-        const val PAGE_SUB_ROOM = 11
+        const val PAGE_FULL_SCHEDULE = 10
+        const val PAGE_STOP_SCHEDULE = 101
+
+        fun ridToState(int: Int?): Int {
+            return when (int) {
+                R.id.componentsFragment -> 1
+                R.id.notificationFragment -> 4
+                R.id.serviceFragment -> 5
+                R.id.boardcastFragment -> 6
+                R.id.vibrationFragment -> 7
+                R.id.contentProviderFragment -> 8
+                R.id.internetFragment -> 9
+                R.id.fullScheduleFragment -> 10
+                R.id.stopScheduleFragment -> 101
+                else -> 0
+            }
+        }
+
+        fun stateToRid(int: Int): Int {
+            return when (int) {
+                PageName.PAGE_COMPONENTS.i -> PageName.PAGE_COMPONENTS.rid
+                PageName.PAGE_NOTIFICATION.i -> PageName.PAGE_NOTIFICATION.rid
+
+                else -> 0
+            }
+
+        }
+
+        fun levelCheck(state: Int): Int {
+            return when (state) {
+                0 -> 0
+                in 1..100 -> 1
+                else -> 2
+            }
+        }
     }
+}
+
+enum class PageName(val i: Int, val rid: Int) {
+    PAGE_COMPONENTS(1, R.id.componentsFragment),
+    PAGE_NOTIFICATION(4, R.id.notificationFragment)
 }

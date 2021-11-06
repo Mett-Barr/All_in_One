@@ -68,7 +68,8 @@
         tools:layout="@layout/full_schedule_fragment" >
         <action
             android:id="@+id/action_fullScheduleFragment_to_stopScheduleFragment"
-            app:destination="@id/stopScheduleFragment" />
+            app:destination="@id/stopScheduleFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/stopScheduleFragment"

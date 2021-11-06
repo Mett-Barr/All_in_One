@@ -1,6 +1,7 @@
 package com.example.allinone.page2
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +15,11 @@ import com.example.allinone.databinding.FragmentPage2Binding
 import com.example.allinone.main.MainViewModel
 
 class Page2Fragment : Fragment() {
+
     private lateinit var binding: FragmentPage2Binding
     private val viewModel: MainViewModel by activityViewModels()
+
+    private lateinit var toast: Toast
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +32,35 @@ class Page2Fragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        binding.fragmentContainerView2.findNavController()
+            .addOnDestinationChangedListener { _, destination, _ ->
+//                when (destination.id) {
+//                    R.id.stopScheduleFragment -> {
+//                        viewModel._goToState.value = 101
+//                    }
+//                    R.id.fullScheduleFragment ->
+//                        if (viewModel._goToState.value != 10) viewModel._goToState.value = 10
+//
+//                }
+//                if (destination.id == R.id.stopScheduleFragment) viewModel._goToState.value = 101
+//                else if (destination.id == R.id.action_global_fullScheduleFragment) viewModel._goToState.value = 10
+
+
+//                destination.
+
+                getToast()
+            }
+    }
+
     private fun init() {
+        goToState()
+        backPress()
+
+    }
+
+    private fun goToState() {
         viewModel.goToState.observe(viewLifecycleOwner, Observer {
             MainViewModel.apply {
                 when (it) {
@@ -39,15 +71,58 @@ class Page2Fragment : Fragment() {
                     PAGE_VIBRATION -> navigation(R.id.action_global_vibrationFragment)
                     PAGE_CONTENT_PROVIDER -> navigation(R.id.action_global_contentProviderFragment)
                     PAGE_INTERNET -> navigation(R.id.action_global_internetFragment)
-                    PAGE_ROOM -> navigation(R.id.action_global_fullScheduleFragment)
+                    PAGE_FULL_SCHEDULE -> {
+                        if (ridToState(binding.fragmentContainerView2.findNavController().currentDestination?.id) != PAGE_FULL_SCHEDULE) {
+                            navigation(R.id.action_global_fullScheduleFragment)
+                        }
+                    }
+                }
+            }
+//            navigation(MainViewModel.stateToRid(it))
+        })
+    }
+
+    private fun backPress() {
+        viewModel.backControl.observe(viewLifecycleOwner, Observer {
+//            binding.fragmentContainerView2.findNavController().popBackStack()
+//            viewModel._goToState.value
+            Log.d("!!!!", "backControl ")
+
+//            viewModel._goToState.value =
+//                binding.fragmentContainerView2.findNavController().currentDestination!!.id
+
+            when (
+                MainViewModel.levelCheck(
+                    MainViewModel.ridToState(
+                        binding.fragmentContainerView2.findNavController().currentDestination?.id
+                    )
+                )
+            ) {
+                1 -> viewModel.goToPage1()
+                2 -> {
+                    binding.fragmentContainerView2.findNavController().apply {
+                        popBackStack()
+                        viewModel._goToState.value =
+                            MainViewModel.ridToState(this.currentDestination?.id)
+                    }
                 }
             }
         })
-
-        //
     }
 
     private fun navigation(i: Int) = binding.fragmentContainerView2.findNavController().navigate(i)
+
+    fun getToast() {
+        if (this::toast.isInitialized) {
+            toast.cancel()
+        }
+        toast = Toast.makeText(
+            context,
+            viewModel._goToState.value.toString(),
+            Toast.LENGTH_SHORT
+        )
+        toast.show()
+    }
 
     companion object {
         @JvmStatic

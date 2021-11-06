@@ -2,25 +2,25 @@ package com.example.allinone.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowInsets
-import android.view.WindowInsets.Type.ime
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
-import androidx.core.view.WindowInsetsCompat.Type.ime
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.allinone.R
 import com.example.allinone.databinding.ActivityMainBinding
-import java.lang.reflect.Type
 import kotlin.math.abs
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
+
+    private lateinit var toast: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
         viewPager()
+        state()
     }
 
     private fun viewPager() {
@@ -78,6 +79,12 @@ class MainActivity : AppCompatActivity() {
                 1 -> binding.VP.currentItem = 1
             }
 //            Toast.makeText(applicationContext, "$it", Toast.LENGTH_SHORT).show()
+        })
+    }
+
+    private fun state() {
+        viewModel.goToState.observe(this, Observer {
+            getToast()
         })
     }
 
@@ -139,11 +146,30 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onBackPressed() {
+//        super.onBackPressed()
         when (binding.VP.currentItem) {
             0 -> this.finish()
-            1 -> viewModel.goToPage1()
+            1 -> {
+                viewModel.backPress()
+
+//                viewModel.goToPage1()
+//                if (viewModel.goToState.value == MainViewModel.PAGE_STOP_SCHEDULE) {
+//                } else {
+//                    Log.d("!!!", "onBackPressed: ")
+//                }
+            }
         }
     }
+
+
+    private fun getToast() {
+        if (this::toast.isInitialized) {
+            toast.cancel()
+        }
+        toast = Toast.makeText(this, viewModel.goToState.value.toString(), Toast.LENGTH_SHORT)
+//        toast.show()
+    }
+
 
 //    override fun onWindowFocusChanged(hasFocus: Boolean) {
 //        super.onWindowFocusChanged(hasFocus)

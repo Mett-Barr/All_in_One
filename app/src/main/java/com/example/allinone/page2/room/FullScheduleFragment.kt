@@ -26,8 +26,10 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.allinone.databinding.FullScheduleFragmentBinding
+import com.example.allinone.main.MainViewModel
 import com.example.allinone.page2.room.viewmodels.BusScheduleViewModel
 import com.example.allinone.page2.room.viewmodels.BusScheduleViewModelFactory
+import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -43,6 +45,28 @@ class FullScheduleFragment : Fragment() {
         BusScheduleViewModelFactory(
             (activity?.application as BusScheduleApplication).database.scheduleDao()
         )
+    }
+
+    private val mainViewModel: MainViewModel by activityViewModels()
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true).apply {
+            duration = 300
+        }
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false).apply {
+            duration = 300
+        }
+
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true).apply {
+            duration = 300
+        }
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false).apply {
+            duration = 300
+        }
+
     }
 
     override fun onCreateView(
@@ -65,6 +89,8 @@ class FullScheduleFragment : Fragment() {
                     stopName = it.stopName
                 )
             view.findNavController().navigate(action)
+
+            mainViewModel._goToState.value = MainViewModel.PAGE_STOP_SCHEDULE
         }
         recyclerView.adapter = busStopAdapter
         lifecycle.coroutineScope.launch {
