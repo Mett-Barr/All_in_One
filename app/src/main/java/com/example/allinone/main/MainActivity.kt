@@ -2,7 +2,6 @@ package com.example.allinone.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.widget.Toast
@@ -53,11 +52,15 @@ class MainActivity : AppCompatActivity() {
                         0 -> {
                             binding.VP.isUserInputEnabled = false
                             window.insetsController?.hide(WindowInsets.Type.ime())
-                            binding.VP.currentItem = 0
+                            viewModel.apply {
+                                goToPage1()
+                                _goToState.value = 0
+                            }
+//                            binding.VP.currentItem = 0
                         }
                         1 -> {
                             binding.VP.isUserInputEnabled = true
-                            binding.VP.currentItem = 1
+//                            binding.VP.currentItem = 1
                         }
                     }
                 }
@@ -84,7 +87,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun state() {
         viewModel.goToState.observe(this, Observer {
-            getToast()
+//            getToast()
+            ApplicationToast.showToast(this, viewModel.goToState.value.toString())
         })
     }
 
@@ -167,7 +171,7 @@ class MainActivity : AppCompatActivity() {
             toast.cancel()
         }
         toast = Toast.makeText(this, viewModel.goToState.value.toString(), Toast.LENGTH_SHORT)
-//        toast.show()
+        toast.show()
     }
 
 
@@ -182,4 +186,9 @@ class MainActivity : AppCompatActivity() {
 //            window.insetsController?.hide(WindowInsets.Type.ime())
 //        }
 //    }
+
+    override fun onPause() {
+        super.onPause()
+        ApplicationToast.cancel()
+    }
 }

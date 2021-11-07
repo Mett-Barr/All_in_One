@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import com.example.allinone.R
 import com.example.allinone.databinding.FragmentPage2Binding
 import com.example.allinone.main.MainViewModel
 
@@ -23,7 +23,7 @@ class Page2Fragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentPage2Binding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
@@ -61,22 +61,26 @@ class Page2Fragment : Fragment() {
     }
 
     private fun goToState() {
-        viewModel.goToState.observe(viewLifecycleOwner, Observer {
+        viewModel.goToState.observe(viewLifecycleOwner, Observer { state ->
             MainViewModel.apply {
-                when (it) {
-                    PAGE_COMPONENTS -> navigation(R.id.action_global_componentsFragment)
-                    PAGE_NOTIFICATION -> navigation(R.id.action_global_notificationFragment)
-                    PAGE_SERVICE -> navigation(R.id.action_global_serviceFragment)
-                    PAGE_BROADCAST -> navigation(R.id.action_global_boardcastFragment)
-                    PAGE_VIBRATION -> navigation(R.id.action_global_vibrationFragment)
-                    PAGE_CONTENT_PROVIDER -> navigation(R.id.action_global_contentProviderFragment)
-                    PAGE_INTERNET -> navigation(R.id.action_global_internetFragment)
-                    PAGE_FULL_SCHEDULE -> {
-                        if (ridToState(binding.fragmentContainerView2.findNavController().currentDestination?.id) != PAGE_FULL_SCHEDULE) {
-                            navigation(R.id.action_global_fullScheduleFragment)
-                        }
-                    }
-                }
+                if (state != nowState() && level(state) != 2) navigation(ridFromState(state))
+
+//                when (state) {
+//                    PAGE_COMPONENTS -> navigation(R.id.action_global_componentsFragment)
+//                    PAGE_NOTIFICATION -> navigation(R.id.action_global_notificationFragment)
+//                    PAGE_SERVICE -> navigation(R.id.action_global_serviceFragment)
+//                    PAGE_BROADCAST -> navigation(R.id.action_global_boardcastFragment)
+//                    PAGE_VIBRATION -> navigation(R.id.action_global_vibrationFragment)
+//                    PAGE_CONTENT_PROVIDER -> navigation(R.id.action_global_contentProviderFragment)
+//                    PAGE_INTERNET -> navigation(R.id.action_global_internetFragment)
+//                    PAGE_FULL_SCHEDULE -> {
+//                        if (stateFromRid(getNavController().currentDestination?.id) != PAGE_FULL_SCHEDULE) {
+//                            navigation(R.id.action_global_fullScheduleFragment)
+//                        }
+//                    }
+//                }
+
+
             }
 //            navigation(MainViewModel.stateToRid(it))
         })
@@ -92,18 +96,17 @@ class Page2Fragment : Fragment() {
 //                binding.fragmentContainerView2.findNavController().currentDestination!!.id
 
             when (
-                MainViewModel.levelCheck(
-                    MainViewModel.ridToState(
+                MainViewModel.level(
+                    MainViewModel.stateFromRid(
                         binding.fragmentContainerView2.findNavController().currentDestination?.id
                     )
-                )
-            ) {
+                )) {
                 1 -> viewModel.goToPage1()
                 2 -> {
                     binding.fragmentContainerView2.findNavController().apply {
                         popBackStack()
                         viewModel._goToState.value =
-                            MainViewModel.ridToState(this.currentDestination?.id)
+                            MainViewModel.stateFromRid(this.currentDestination?.id)
                     }
                 }
             }
@@ -111,6 +114,12 @@ class Page2Fragment : Fragment() {
     }
 
     private fun navigation(i: Int) = binding.fragmentContainerView2.findNavController().navigate(i)
+
+    private fun nowState(): Int? = getNavController().currentDestination?.id
+
+    private fun getNavController(): NavController =
+        binding.fragmentContainerView2.findNavController()
+
 
     private fun getToast() {
         if (this::toast.isInitialized) {

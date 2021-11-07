@@ -82,4 +82,12 @@
     <action
         android:id="@+id/action_global_fullScheduleFragment"
         app:destination="@id/fullScheduleFragment" />
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.example.allinone.page2.test.TestFragment"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test" />
+    <action
+        android:id="@+id/action_global_testFragment"
+        app:destination="@id/testFragment" />
 </navigation>

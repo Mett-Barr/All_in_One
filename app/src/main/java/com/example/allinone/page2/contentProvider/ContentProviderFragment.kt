@@ -1,12 +1,10 @@
 package com.example.allinone.page2.contentProvider
 
 import android.Manifest
-import android.content.ContentProvider
 import android.content.ContentResolver
 import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
 import android.database.Cursor
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -19,10 +17,9 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.allinone.R
 import com.example.allinone.databinding.FragmentContentProviderBinding
+import com.example.allinone.main.ApplicationToast
 
 class ContentProviderFragment : Fragment() {
     private lateinit var binding: FragmentContentProviderBinding
@@ -141,9 +138,11 @@ class ContentProviderFragment : Fragment() {
                 )
             }
 
-            Toast.makeText(context, "聯絡人已載入", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(context, "聯絡人已載入", Toast.LENGTH_SHORT).show()
             Log.d(TAG, "getContent: ")
             cursor.close()
+
+            context?.let { ApplicationToast.showToast(it, "聯絡人已載入") }
 
         } catch (e: NullPointerException) {
             Toast.makeText(context, "activity null!!!", Toast.LENGTH_SHORT).show()

@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.allinone.databinding.FullScheduleFragmentBinding
 import com.example.allinone.main.MainViewModel
+import com.example.allinone.main.MainViewModel.Companion.stateFromRid
 import com.example.allinone.page2.room.viewmodels.BusScheduleViewModel
 import com.example.allinone.page2.room.viewmodels.BusScheduleViewModelFactory
 import com.google.android.material.transition.MaterialSharedAxis
@@ -53,6 +54,10 @@ class FullScheduleFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        transition()
+    }
+
+    private fun transition() {
         exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true).apply {
             duration = 300
         }
@@ -66,7 +71,6 @@ class FullScheduleFragment : Fragment() {
         returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false).apply {
             duration = 300
         }
-
     }
 
     override fun onCreateView(
@@ -75,8 +79,7 @@ class FullScheduleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FullScheduleFragmentBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -88,9 +91,10 @@ class FullScheduleFragment : Fragment() {
                 .actionFullScheduleFragmentToStopScheduleFragment(
                     stopName = it.stopName
                 )
-            view.findNavController().navigate(action)
-
-            mainViewModel._goToState.value = MainViewModel.PAGE_STOP_SCHEDULE
+            view.findNavController().apply {
+                navigate(action)
+                mainViewModel._goToState.value = stateFromRid(this.currentDestination?.id)
+            }
         }
         recyclerView.adapter = busStopAdapter
         lifecycle.coroutineScope.launch {

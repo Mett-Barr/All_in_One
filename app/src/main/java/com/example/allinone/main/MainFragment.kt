@@ -22,13 +22,6 @@ class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
     private val viewModel: MainViewModel by activityViewModels()
 
-//    private val c = Calendar.getInstance()
-//    private val df = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
-//    private val tf = SimpleDateFormat("hh:mm", Locale.getDefault())
-//    private val hf = SimpleDateFormat("hh", Locale.getDefault())
-//    private val mf = SimpleDateFormat("mm", Locale.getDefault())
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,58 +56,8 @@ class MainFragment : Fragment() {
     }
 
     fun toast() {
-        Toast.makeText(activity, "Toast!", Toast.LENGTH_SHORT).show()
+        activity?.let { ApplicationToast.showToast(it, "Toast!") }
     }
-//
-//    private fun component() {
-//    }
-//
-//    private fun datePicker() {
-//        binding.cv3.text = df.format(c.time)
-//        val datePicker =
-//            MaterialDatePicker.Builder.datePicker()
-//                .setTitleText("Select dates")
-//                .build()
-//
-//
-//        binding.datePickerCV3.setOnClickListener {
-//            datePicker.show(this.childFragmentManager, "")
-//        }
-//
-//        datePicker.addOnPositiveButtonClickListener {
-//            c.timeInMillis = it
-//            binding.cv3.text = df.format(c.time)
-//        }
-//    }
-//
-//    private fun timePicker() {
-//        binding.cv4.text = tf.format(c.time)
-//
-//        val timePicker =
-//            MaterialTimePicker.Builder()
-//                .setTimeFormat(TimeFormat.CLOCK_24H)
-////                    .setTitleText("Select Appointment time")
-//                .setHour(hf.format(c.time).toInt())
-//                .setMinute(mf.format(c.time).toInt())
-//                .build()
-//        binding.timePickerCV4.setOnClickListener {
-//            timePicker.showNow(this.parentFragmentManager, "")
-//        }
-//
-//        timePicker.addOnPositiveButtonClickListener {
-//            binding.cv4.text = timePicker.hour.toString() + ":" + timePicker.minute.toString()
-//        }
-//    }
-
-//    private fun clickable() {
-//        viewModel.pagerClickable.observe(viewLifecycleOwner, Observer {
-//            binding.CL.isClickable = it
-//        })
-//    }
-
-//    private fun test() {
-//    }
-
 
     companion object {
         @JvmStatic
