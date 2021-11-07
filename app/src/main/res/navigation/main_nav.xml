@@ -90,4 +90,12 @@
     <action
         android:id="@+id/action_global_testFragment"
         app:destination="@id/testFragment" />
+    <fragment
+        android:id="@+id/workManagerFragment"
+        android:name="com.example.allinone.page2.workManager.WorkManagerFragment"
+        android:label="fragment_work_manager"
+        tools:layout="@layout/fragment_work_manager" />
+    <action
+        android:id="@+id/action_global_workManagerFragment"
+        app:destination="@id/workManagerFragment" />
 </navigation>

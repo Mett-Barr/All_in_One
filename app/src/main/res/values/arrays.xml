@@ -56,5 +56,6 @@
         <item>Content\nProvider</item>
         <item>Internet</item>
         <item>Room</item>
+        <item>WorkManager</item>
     </string-array>
 </resources>

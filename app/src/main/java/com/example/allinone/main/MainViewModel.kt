@@ -93,6 +93,7 @@ class MainViewModel : ViewModel() {
                 PageName.PAGE_CONTENT_PROVIDER.rid -> PageName.PAGE_CONTENT_PROVIDER.state
                 PageName.PAGE_INTERNET.rid -> PageName.PAGE_INTERNET.state
                 PageName.PAGE_FULL_SCHEDULE.rid -> PageName.PAGE_FULL_SCHEDULE.state
+                PageName.PAGE_WORK_MANAGER.rid -> PageName.PAGE_WORK_MANAGER.state
 
                 PageName.PAGE_STOP_SCHEDULE.rid -> PageName.PAGE_STOP_SCHEDULE.state
 
@@ -110,6 +111,7 @@ class MainViewModel : ViewModel() {
                 PageName.PAGE_CONTENT_PROVIDER.state -> PageName.PAGE_CONTENT_PROVIDER.rid
                 PageName.PAGE_INTERNET.state -> PageName.PAGE_INTERNET.rid
                 PageName.PAGE_FULL_SCHEDULE.state -> PageName.PAGE_FULL_SCHEDULE.rid
+                PageName.PAGE_WORK_MANAGER.state -> PageName.PAGE_WORK_MANAGER.rid
 
                 PageName.PAGE_STOP_SCHEDULE.state -> PageName.PAGE_STOP_SCHEDULE.rid
 
@@ -139,6 +141,7 @@ enum class PageName(val state: Int, val rid: Int) {
     PAGE_CONTENT_PROVIDER(8, R.id.contentProviderFragment),
     PAGE_INTERNET(9, R.id.internetFragment),
     PAGE_FULL_SCHEDULE(10, R.id.fullScheduleFragment),
+    PAGE_WORK_MANAGER(11, R.id.workManagerFragment),
 
     PAGE_STOP_SCHEDULE(101, R.id.stopScheduleFragment),
 
