@@ -1,14 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".page2.workManager.WorkManagerFragment">
+    app:circularflow_radiusInDP="28dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.allinone.page2.workManager.WorkManagerViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".page2.workManager.WorkManagerFragment">
 
-</FrameLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/work_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="@{@string/work_a(viewModel.valueA)}"
+                    android:textSize="36sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/constraints"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Constraints"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/work_a" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/delay"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Delay"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraints" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/addtag"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Add Tag"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/delay" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="enqueue"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addtag" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/chain_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chain"
+                    android:textSize="20sp"
+                    android:onClick="@{() -> viewModel.chainClick()}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView5">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/work_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="@{@string/work_b(viewModel.valueB)}"
+                    android:textSize="36sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/constraints_b"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Constraints"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/work_b" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/delay_b"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Delay"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraints_b" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/add_tag_b"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Add Tag"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/delay_b" />
+
+                <Button
+                    android:id="@+id/button_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="enqueue"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/add_tag_b" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/chain_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> viewModel.chainClick()}"
+                    android:text="@string/chain"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

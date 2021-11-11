@@ -142,7 +142,7 @@ class ContentProviderFragment : Fragment() {
             Log.d(TAG, "getContent: ")
             cursor.close()
 
-            context?.let { ApplicationToast.showToast(it, "聯絡人已載入") }
+            context?.let { ApplicationToast.show(it, "聯絡人已載入") }
 
         } catch (e: NullPointerException) {
             Toast.makeText(context, "activity null!!!", Toast.LENGTH_SHORT).show()

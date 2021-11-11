@@ -26,7 +26,7 @@ class InternetViewModel : ViewModel() {
     private fun get() {
         viewModelScope.launch {
             _state.value = MarsApiStatus.LOADING
-            Log.d("!!!", "get: ")
+//            Log.d("!!!", "get: ")
             try {
                 _photo.value = MarsApi.retrofitService.getPhotos()
                 _state.value =MarsApiStatus.DONE

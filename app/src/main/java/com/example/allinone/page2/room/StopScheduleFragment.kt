@@ -58,6 +58,10 @@ class StopScheduleFragment: Fragment() {
             stopName = it.getString(STOP_NAME).toString()
         }
 
+//        transition()
+    }
+
+    private fun transition() {
         enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true).apply {
             duration = 300
         }
@@ -71,7 +75,6 @@ class StopScheduleFragment: Fragment() {
         returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false).apply {
             duration = 300
         }
-
     }
 
     override fun onCreateView(

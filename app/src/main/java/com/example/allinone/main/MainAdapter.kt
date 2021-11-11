@@ -68,7 +68,7 @@ class MainAdapter(
         viewHolder.apply {
             textView.text = dataSet[position]
             cardView.setOnClickListener {
-                viewModel._goToState.value = position
+//                viewModel._goToState.value = position
                 when (position) {
                     0 -> mainFragment.toast()
                     2 -> {

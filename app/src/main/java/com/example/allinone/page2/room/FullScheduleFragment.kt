@@ -54,7 +54,7 @@ class FullScheduleFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        transition()
+//        transition()
     }
 
     private fun transition() {

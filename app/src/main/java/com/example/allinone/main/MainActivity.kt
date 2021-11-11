@@ -2,17 +2,15 @@ package com.example.allinone.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.util.Log
 import android.view.WindowInsets
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.allinone.R
 import com.example.allinone.databinding.ActivityMainBinding
-import kotlin.math.abs
+import com.example.allinone.main.MainViewModel.Companion.level
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     private fun viewPager() {
         binding.VP.also {
             it.adapter = MainPagerAdapter.newInstance(this)
-            it.offscreenPageLimit = 3
+            it.offscreenPageLimit = 1
             it.setPageTransformer(DepthPageTransformer())
             it.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
@@ -51,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                             window.insetsController?.hide(WindowInsets.Type.ime())
                             viewModel.apply {
                                 goToPage1()
-                                _goToState.value = 0
+//                                _goToState.value = 0
                             }
 //                            binding.VP.currentItem = 0
                         }
@@ -78,12 +76,17 @@ class MainActivity : AppCompatActivity() {
                 0 -> binding.VP.currentItem = 0
                 1 -> binding.VP.currentItem = 1
             }
+            Log.d("!!!", "viewPager: " + binding.VP.currentItem.toString())
+        })
+
+        viewModel.goToState.observe(this, Observer {
+            binding.VP.isUserInputEnabled = level(it) == 1
         })
     }
 
     private fun state() {
         viewModel.goToState.observe(this, Observer {
-            ApplicationToast.showToast(this, viewModel.goToState.value.toString())
+            ApplicationToast.show(this, viewModel.goToState.value.toString())
         })
     }
 

@@ -6,7 +6,7 @@ import android.widget.Toast
 object ApplicationToast {
     lateinit var toast: Toast
 
-    fun showToast(context: Context, str: String) {
+    fun show(context: Context, str: String) {
         if (this::toast.isInitialized) {
 //            Thread.sleep(1000)
             toast.cancel()

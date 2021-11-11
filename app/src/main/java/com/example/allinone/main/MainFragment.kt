@@ -5,17 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.view.setPadding
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.allinone.R
 import com.example.allinone.databinding.FragmentMainBinding
-import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
-import java.text.SimpleDateFormat
 import java.util.*
 
 class MainFragment : Fragment() {
@@ -56,7 +49,7 @@ class MainFragment : Fragment() {
     }
 
     fun toast() {
-        activity?.let { ApplicationToast.showToast(it, "Toast!") }
+        activity?.let { ApplicationToast.show(it, "Toast!") }
     }
 
     companion object {

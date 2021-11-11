@@ -19,8 +19,6 @@ class Page2Fragment : Fragment() {
     private lateinit var binding: FragmentPage2Binding
     private val viewModel: MainViewModel by activityViewModels()
 
-    private lateinit var toast: Toast
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -32,75 +30,24 @@ class Page2Fragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        binding.fragmentContainerView2.findNavController()
-            .addOnDestinationChangedListener { _, destination, _ ->
-//                when (destination.id) {
-//                    R.id.stopScheduleFragment -> {
-//                        viewModel._goToState.value = 101
-//                    }
-//                    R.id.fullScheduleFragment ->
-//                        if (viewModel._goToState.value != 10) viewModel._goToState.value = 10
-//
-//                }
-//                if (destination.id == R.id.stopScheduleFragment) viewModel._goToState.value = 101
-//                else if (destination.id == R.id.action_global_fullScheduleFragment) viewModel._goToState.value = 10
-
-
-//                destination.
-
-                getToast()
-            }
-    }
 
     private fun init() {
         goToState()
         backPress()
-
     }
 
     private fun goToState() {
         viewModel.goToState.observe(viewLifecycleOwner, Observer { state ->
             MainViewModel.apply {
                 if (state != nowState() && level(state) != 2) navigation(ridFromState(state))
-
-//                when (state) {
-//                    PAGE_COMPONENTS -> navigation(R.id.action_global_componentsFragment)
-//                    PAGE_NOTIFICATION -> navigation(R.id.action_global_notificationFragment)
-//                    PAGE_SERVICE -> navigation(R.id.action_global_serviceFragment)
-//                    PAGE_BROADCAST -> navigation(R.id.action_global_boardcastFragment)
-//                    PAGE_VIBRATION -> navigation(R.id.action_global_vibrationFragment)
-//                    PAGE_CONTENT_PROVIDER -> navigation(R.id.action_global_contentProviderFragment)
-//                    PAGE_INTERNET -> navigation(R.id.action_global_internetFragment)
-//                    PAGE_FULL_SCHEDULE -> {
-//                        if (stateFromRid(getNavController().currentDestination?.id) != PAGE_FULL_SCHEDULE) {
-//                            navigation(R.id.action_global_fullScheduleFragment)
-//                        }
-//                    }
-//                }
-
-
             }
-//            navigation(MainViewModel.stateToRid(it))
+            Log.d("!!!", "goToState: $state")
         })
     }
 
     private fun backPress() {
         viewModel.backControl.observe(viewLifecycleOwner, Observer {
-//            binding.fragmentContainerView2.findNavController().popBackStack()
-//            viewModel._goToState.value
-            Log.d("!!!!", "backControl ")
-
-//            viewModel._goToState.value =
-//                binding.fragmentContainerView2.findNavController().currentDestination!!.id
-
-            when (
-                MainViewModel.level(
-                    MainViewModel.stateFromRid(
-                        binding.fragmentContainerView2.findNavController().currentDestination?.id
-                    )
-                )) {
+            when (MainViewModel.level(MainViewModel.stateFromRid(nowState()))) {
                 1 -> viewModel.goToPage1()
                 2 -> {
                     binding.fragmentContainerView2.findNavController().apply {
@@ -113,25 +60,12 @@ class Page2Fragment : Fragment() {
         })
     }
 
-    private fun navigation(i: Int) = binding.fragmentContainerView2.findNavController().navigate(i)
+    private fun navigation(i: Int) = getNavController().navigate(i)
 
     private fun nowState(): Int? = getNavController().currentDestination?.id
 
     private fun getNavController(): NavController =
         binding.fragmentContainerView2.findNavController()
-
-
-    private fun getToast() {
-        if (this::toast.isInitialized) {
-            toast.cancel()
-        }
-        toast = Toast.makeText(
-            context,
-            viewModel._goToState.value.toString(),
-            Toast.LENGTH_SHORT
-        )
-//        toast.show()
-    }
 
     companion object {
         @JvmStatic
