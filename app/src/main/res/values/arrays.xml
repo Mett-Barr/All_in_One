@@ -57,5 +57,6 @@
         <item>Internet</item>
         <item>Room</item>
         <item>WorkManager</item>
+        <item>Test</item>
     </string-array>
 </resources>

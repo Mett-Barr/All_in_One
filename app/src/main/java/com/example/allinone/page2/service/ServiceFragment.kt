@@ -12,9 +12,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import com.example.allinone.databinding.FragmentServiceBinding
-import com.example.allinone.main.MainViewModel
+import com.example.allinone.main.ApplicationToast
 
 class ServiceFragment : Fragment() {
     private lateinit var binding: FragmentServiceBinding
@@ -194,11 +193,7 @@ class ServiceFragment : Fragment() {
                 // However, if this call were something that might hang, then this request should
                 // occur in a separate thread to avoid slowing down the activity performance.
                 val num: Int = binderService.randomNumber
-                if (this::binderToast.isInitialized) {
-                    binderToast.cancel()
-                }
-                binderToast = Toast.makeText(activity, "number: $num", Toast.LENGTH_SHORT)
-                binderToast.show()
+                context?.let { it1 -> ApplicationToast.show(it1, "number: $num") }
             }
         }
     }
