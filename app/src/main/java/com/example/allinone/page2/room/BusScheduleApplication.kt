@@ -17,7 +17,9 @@ package com.example.allinone.page2.room
 
 import android.app.Application
 import com.example.allinone.page2.room.database.AppDatabase
+import com.example.allinone.page2.test.testData.TestItemDataBase
 
 class BusScheduleApplication : Application() {
     val database: AppDatabase by lazy { AppDatabase.getDatabase(this) }
+    val testDatabase: TestItemDataBase by lazy { TestItemDataBase.getDataBase(this) }
 }

@@ -21,4 +21,7 @@
     <string name="work_a">Work A：%d</string>
     <string name="work_b">Work B：%d</string>
     <string name="chain">Chain</string>
+    <string name="room">Room</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
 </resources>
