@@ -25,6 +25,7 @@ import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.allinone.databinding.StopScheduleFragmentBinding
+import com.example.allinone.main.MainApplication
 import com.example.allinone.page2.room.viewmodels.BusScheduleViewModel
 import com.example.allinone.page2.room.viewmodels.BusScheduleViewModelFactory
 import com.google.android.material.transition.MaterialSharedAxis
@@ -47,7 +48,7 @@ class StopScheduleFragment: Fragment() {
 
     private val viewModel: BusScheduleViewModel by activityViewModels {
         BusScheduleViewModelFactory(
-            (activity?.application as BusScheduleApplication).database.scheduleDao()
+            (activity?.application as MainApplication).database.scheduleDao()
         )
     }
 

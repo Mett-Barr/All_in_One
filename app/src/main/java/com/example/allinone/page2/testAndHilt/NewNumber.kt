@@ -1,4 +1,4 @@
-package com.example.allinone.page2.test
+package com.example.allinone.page2.testAndHilt
 
 class NewNumber {
     fun new(): Int = (0..10).random()

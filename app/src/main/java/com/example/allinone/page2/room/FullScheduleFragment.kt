@@ -26,6 +26,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.allinone.databinding.FullScheduleFragmentBinding
+import com.example.allinone.main.MainApplication
 import com.example.allinone.main.MainViewModel
 import com.example.allinone.main.MainViewModel.Companion.stateFromRid
 import com.example.allinone.page2.room.viewmodels.BusScheduleViewModel
@@ -44,7 +45,7 @@ class FullScheduleFragment : Fragment() {
 
     private val viewModel: BusScheduleViewModel by activityViewModels {
         BusScheduleViewModelFactory(
-            (activity?.application as BusScheduleApplication).database.scheduleDao()
+            (activity?.application as MainApplication).database.scheduleDao()
         )
     }
 

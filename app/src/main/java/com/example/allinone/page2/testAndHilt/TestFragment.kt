@@ -1,4 +1,4 @@
-package com.example.allinone.page2.test
+package com.example.allinone.page2.testAndHilt
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,20 +8,23 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.allinone.databinding.FragmentTestBinding
-import com.example.allinone.page2.room.BusScheduleApplication
+import com.example.allinone.main.MainApplication
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class TestFragment : Fragment() {
 
     private lateinit var binding: FragmentTestBinding
 
     //    private val viewModel: TestViewModel by viewModels()
-    private val viewModel: TestViewModel by viewModels {
-        TestViewModelFactory(
-            (activity?.application as BusScheduleApplication).testDatabase.testItemDao()
-        )
-    }
+    private val viewModel: TestViewModel by viewModels()
+//    private val viewModel: TestViewModel by viewModels {
+//        TestViewModelFactory(
+//            (activity?.application as MainApplication).testDatabase.testItemDao()
+//        )
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

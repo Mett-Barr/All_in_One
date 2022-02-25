@@ -6,13 +6,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.allinone.page2.test.TestViewModel" />
+            type="com.example.allinone.page2.testAndHilt.TestViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".page2.test.TestFragment">
+        tools:context=".page2.testAndHilt.TestFragment">
 
         <!-- TODO: Update blank fragment layout -->
 

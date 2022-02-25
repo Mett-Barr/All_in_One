@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -80,4 +81,18 @@ dependencies {
 
     // WorkManger
     implementation "androidx.work:work-runtime-ktx:2.7.0"
+
+    // Test
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+    // AndroidX Test - JVM testing
+    testImplementation "androidx.test.ext:junit-ktx:1.1.3"
+
+    testImplementation "androidx.test:core-ktx:1.4.0"
+
+    testImplementation "org.robolectric:robolectric:4.5.1"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:2.40"
+    kapt "com.google.dagger:hilt-android-compiler:2.40"
 }

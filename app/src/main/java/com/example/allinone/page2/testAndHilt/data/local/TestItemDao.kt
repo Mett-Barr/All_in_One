@@ -1,4 +1,4 @@
-package com.example.allinone.page2.test.testData
+package com.example.allinone.page2.testAndHilt.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -11,7 +11,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.allinone.R
 import com.example.allinone.databinding.ActivityMainBinding
 import com.example.allinone.main.MainViewModel.Companion.level
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
