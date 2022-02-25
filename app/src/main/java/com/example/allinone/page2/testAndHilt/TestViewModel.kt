@@ -10,7 +10,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TestViewModel @Inject constructor(
-//    private val testItemDao: TestItemDao,
     private val repository: Repository,
 ) : ViewModel() {
     private val _test = MutableLiveData(0)
@@ -22,13 +21,10 @@ class TestViewModel @Inject constructor(
     }
 
 
-//    val testRoomItem: LiveData<TestItem> = testItemDao.getValue().asLiveData()
+    /**---------------------------------   Room    ----------------------------------------------**/
 
     val testRoomItem: LiveData<TestItem> = repository.getValue().asLiveData()
 
-//    fun testRoomIsEmpty(): Boolean {
-//        return testItemDao.getSize() == 0
-//    }
 
     private fun valueChange(int: Int = 0) {
         viewModelScope.launch { repository.valueChange(TestItem(0, int)) }
@@ -45,7 +41,7 @@ class TestViewModel @Inject constructor(
     fun plus() {
         val num = testRoomItem.value?.value?.plus(1)
         num?.let { valueChange(it) }
-    }
+}
 
     fun minus() {
         val num = testRoomItem.value?.value?.minus(1)
