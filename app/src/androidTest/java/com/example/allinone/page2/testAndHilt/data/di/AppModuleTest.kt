@@ -2,6 +2,7 @@ package com.example.allinone.page2.testAndHilt.data.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.allinone.page2.testAndHilt.data.local.TestItemDao
 import com.example.allinone.page2.testAndHilt.data.local.TestItemDataBase
 import dagger.Module
 import dagger.Provides
@@ -20,4 +21,8 @@ object AppModuleTest {
         Room.inMemoryDatabaseBuilder(context, TestItemDataBase::class.java)
             .allowMainThreadQueries()
             .build()
+
+    @Provides
+    @Named("test_dao")
+    fun provideInMemoryDao(dataBase: TestItemDataBase): TestItemDao = dataBase.testItemDao()
 }

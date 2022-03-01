@@ -1,9 +1,6 @@
 package com.example.allinone.page2.testAndHilt.data.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -19,4 +16,7 @@ interface TestItemDao {
 
     @Update
     suspend fun valueChange(testItem: TestItem)
+
+    @Delete
+    suspend fun delete(testItem: TestItem)
 }
