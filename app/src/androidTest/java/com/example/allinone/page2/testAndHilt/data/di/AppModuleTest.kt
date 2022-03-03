@@ -26,3 +26,4 @@ object AppModuleTest {
     @Named("test_dao")
     fun provideInMemoryDao(dataBase: TestItemDataBase): TestItemDao = dataBase.testItemDao()
 }
+

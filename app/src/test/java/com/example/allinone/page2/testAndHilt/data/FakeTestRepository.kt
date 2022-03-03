@@ -4,8 +4,9 @@ import com.example.allinone.page2.testAndHilt.data.local.TestItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
 
-class FakeTestRepository : Repository {
+class FakeTestRepository @Inject constructor() : Repository {
 
     private val item = TestItem(0, 0)
 

@@ -11,11 +11,17 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
 object AppModule {
+
+//    @Qualifier
+//    @Retention(AnnotationRetention.RUNTIME)
+//    annotation class AnnotationTest
+
 
     @Provides
     @Singleton
@@ -28,13 +34,26 @@ object AppModule {
     }
 
     @Provides
+//    @AnnotationTest
     @Singleton
     fun provideUserDao(database: TestItemDataBase): TestItemDao {
         return database.testItemDao()
     }
 
+//    @Provides
+//    @Singleton
+//    fun provideRepository(testItemDao: TestItemDao) = DefaultRepository(testItemDao) as Repository
+}
+
+@InstallIn(SingletonComponent::class)
+@Module
+object RepositoryModule {
     @Provides
     @Singleton
-    fun provideRepository(testItemDao: TestItemDao) = DefaultRepository(testItemDao) as Repository
-
+    fun provideRepository(testItemDao: TestItemDao): Repository {
+        return DefaultRepository(testItemDao)
+    }
+//    fun provideRepository(@AppModule.AnnotationTest testItemDao: TestItemDao): Repository {
+//        return DefaultRepository(testItemDao)
+//    }
 }
