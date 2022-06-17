@@ -32,11 +32,24 @@ class ServiceFragment : Fragment() {
             val binder = service as BinderService.LocalBinder
             binderService = binder.getService()
             binderBound = true
+            binding.bind.isChecked = true
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
             binderBound = false
+            binding.bind.isChecked = false
         }
+
+        override fun onBindingDied(name: ComponentName?) {
+            super.onBindingDied(name)
+            Log.d("!!!", "onBindingDied: ")
+        }
+
+        //        override fun onNullBinding(name: ComponentName?) {
+//            super.onNullBinding(name)
+//            binderBound = false
+//            binding.bind.isChecked = false
+//        }
     }
     /**---------------------------Binder----------------------------*/
 
@@ -179,7 +192,7 @@ class ServiceFragment : Fragment() {
             } else {
                 activity?.stopService(intent)
                 binding.serviceButton.text = "start"
-                Service().stopTimer()
+//                Service().stopTimer()
 //                context?.let { it1 -> Service().cancelNoti(it1) }
                 !boo
             }
@@ -187,13 +200,29 @@ class ServiceFragment : Fragment() {
     }
 
     private fun binderInit() {
+        binding.bind.setOnClickListener {
+            if(binderBound) {
+//                Intent(activity, BinderService::class.java).also {
+//                }
+                context?.unbindService(binderConnection)
+//                activity?.unbindService(binderConnection)
+                binderBound = false
+                binding.binderButton.isEnabled = false
+            } else {
+                Intent(activity, BinderService::class.java).also {
+                    activity?.bindService(it, binderConnection, Context.BIND_AUTO_CREATE)
+                }
+                binding.binderButton.isEnabled = true
+            }
+        }
+
         binding.binderButton.setOnClickListener {
             if (binderBound) {
                 // Call a method from the LocalService.
                 // However, if this call were something that might hang, then this request should
                 // occur in a separate thread to avoid slowing down the activity performance.
                 val num: Int = binderService.randomNumber
-                context?.let { it1 -> ApplicationToast.show(it1, "number: $num") }
+                context?.let { context -> ApplicationToast.show(context, "number: $num") }
             }
         }
     }

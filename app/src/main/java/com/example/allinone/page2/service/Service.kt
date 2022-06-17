@@ -19,10 +19,13 @@ import kotlin.concurrent.timerTask
 
 class Service : Service() {
 
-    companion object {
-        private val timer = Timer()
-    }
+//    companion object {
+//    }
+
+    private val timer = Timer()
     private val notificationId = 1
+
+    private lateinit var notificationManager: NotificationManager
 
     // 綁定時調用
     // 必須要實現的方法
@@ -34,9 +37,9 @@ class Service : Service() {
     // 如果服務已經在運行，則不會掉用此方法。該方法只會被調用一次
     override fun onCreate() {
         super.onCreate()
-        noti()
         Log.d(ContentValues.TAG, "onCreate: ")
     }
+
 
     private fun noti() {
         val channelId = getString(R.string.service_channel_id)
@@ -92,8 +95,11 @@ class Service : Service() {
 //        }
     }
 
-    fun stopTimer() {
+    private fun stopTimer() {
         timer.cancel()
+        notificationManager =
+            this.getSystemService(AppCompatActivity.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.cancel(notificationId)
     }
 
     // 無法做到取消通知和停止計時
@@ -107,6 +113,7 @@ class Service : Service() {
     // 每次通過startService()方法啟動Service都會被回調
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Log.d(ContentValues.TAG, "onStartCommand: ")
+        noti()
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -114,6 +121,8 @@ class Service : Service() {
     override fun onDestroy() {
         super.onDestroy()
         Log.d(ContentValues.TAG, "onDestroy: ")
+
+        stopTimer()
     }
 
     override fun stopService(name: Intent?): Boolean {
